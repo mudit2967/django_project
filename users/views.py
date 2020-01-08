@@ -30,3 +30,13 @@ def private(request):
 	'private_posts':Private.objects.all()
 	}
 	return render(request, 'users/private.html', context)
+'''
+class PostListView(ListView):
+	model=Post 
+	template_name = 'users/private.html'
+	context_object_name = 'posts'
+	ordering= ['-date_posted']
+	
+class PostDetailView(DetailView):
+	model=Private 
+'''

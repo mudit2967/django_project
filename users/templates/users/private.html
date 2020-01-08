@@ -1,15 +1,20 @@
 {% extends "blog/base.html" %}
 {% block content %}
 	{% for private_post in private_posts %}
-		<article class="media content-section">
-		  <div class="media-body">
-		    <div class="article-metadata">
-		      <a class="mr-2" href="#">Private Note</a>
-		      <small class="text-muted">{{ private_post.date_posted|date:'F j, Y' }}</small>
-		    </div>
-		    <h2><a class="article-title" href="#">{{ private_post.title }}</a></h2>
-		    <p class="article-content">{{ private_post.content }}</p>
-		  </div>
-		</article>
+		{%if object.author == user %}
+			<article class="media content-section">
+				  <div class="media-body">
+				    <div class="article-metadata">
+
+				      <a class="mr-2" href="#">Private Note</a>
+				      <small class="text-muted">{{ private_post.date_posted|date:'F j, Y' }}</small>
+				    </div>
+				    <h2><a class="article-title" href="#">{{ private_post.title }}</a></h2>
+				    <p class="article-content">{{ private_post.content }}</p>
+				  </div>
+			</article>
+			{% else %}
+				<h1>No Private Note as of Now</h1>
+		{% endif %}
 	{% endfor %}
 {% endblock content %}
