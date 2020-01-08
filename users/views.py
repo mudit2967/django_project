@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .forms import UserRegisterForm
+from .models import Private
 
 def register(request):
 	if request.method =="POST":
@@ -25,4 +26,7 @@ def profile(request):
 
 @login_required
 def private(request):
-	return render(request, 'users/private.html')
+	context={
+	'private_posts':Private.objects.all()
+	}
+	return render(request, 'users/private.html', context)

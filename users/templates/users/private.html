@@ -1,8 +1,15 @@
 {% extends "blog/base.html" %}
-{% load crispy_forms_tags %}
 {% block content %}
-	<h1>{{ user.username }} private section</h1>
-
+	{% for private_post in private_posts %}
+		<article class="media content-section">
+		  <div class="media-body">
+		    <div class="article-metadata">
+		      <a class="mr-2" href="#">Private Note</a>
+		      <small class="text-muted">{{ private_post.date_posted|date:'F j, Y' }}</small>
+		    </div>
+		    <h2><a class="article-title" href="#">{{ private_post.title }}</a></h2>
+		    <p class="article-content">{{ private_post.content }}</p>
+		  </div>
+		</article>
+	{% endfor %}
 {% endblock content %}
-
-
