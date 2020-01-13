@@ -12,6 +12,9 @@ def register(request):
 			username=form.cleaned_data.get('username')
 			messages.success(request, f'Your Account Has Been Created,Kindly Login With Your Credential')
 			return redirect('login')
+		else :
+			messages.failure(request, f'Something went wrong try again ')
+			return redirect('register')
 
 	form=UserRegisterForm()
 	return render(request, 'users/register.html', {'form': form})
